@@ -8,7 +8,7 @@ import re
 import os
 
 
-#Get texts and titles from pdf.json files in kaggle environment
+#get texts and titles from pdf.json files in kaggle environment
 texts = []
 titles = []
 filepaths = os.listdir('../input/CORD-19-research-challenge/document_parses/pdf_json/')
@@ -38,7 +38,7 @@ for filepath in filepaths:
         break
 
 
-#Preprocess text in string form
+#preprocess text in string form
 for i in range(len(texts)):
     texts[i] = texts[i].lower() #makes lowercase
     texts[i] = re.sub('[^A-Za-z ]+', '', texts[i]) #removes punctuation and numbers
@@ -49,7 +49,7 @@ for i in range(len(texts)):
 extra_stopwords = ['et', 'al', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
 
-#Tokenize text and remove stopwords
+#tokenize text and remove stopwords
 tokenized_texts = [[]] * len(texts)
 stop_words = set(stopwords.words('english'))
 stop_words.add(extra_stopwords)
@@ -58,12 +58,12 @@ for i in range(len(texts)):
     tokenized_texts[i] = [j for j in tokens if not j in stop_words]
 
 
-#Remake strings (without stopwords) from tokens
+#remake strings (without stopwords) from tokens
 for i in range(len(texts)):
     texts[i] = ('').join(tokenized_texts[i])
 
 
-#Dump to files for use in embedding
+#dump to files
 with open('10k_tokenized_texts.json', 'w') as file:
     json.dump(tokenized_texts, file)
 with open('10k_str_texts.json', 'w') as file:
