@@ -20,6 +20,12 @@ embedded_texts = [np.ndarray] * len(tokenized_texts)
 for i in range(len(tokenized_texts)):
     embedded_texts[i] = model.infer_vector(tokenized_texts[i])
 
+#convert from np.array to float
+for i in range(len(embedded_texts)):
+    embedded_texts[i] = list(embedded_texts[i])
+    for j in range(len(embedded_texts[i])):
+        embedded_texts[i][j] = embedded_texts[i][j].item()
+
 #dump to files
-with open('10k_doc2vec_dbow_embeds.json') as file:
+with open('10k_doc2vec_dbow_embeds.json', 'w') as file:
     json.dump(embedded_texts, file)
