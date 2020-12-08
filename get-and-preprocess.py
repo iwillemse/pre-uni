@@ -7,7 +7,6 @@ from nltk.corpus import stopwords
 import re
 import os
 
-
 #get texts and titles from pdf.json files in kaggle environment
 texts = []
 titles = []
@@ -37,7 +36,6 @@ for filepath in filepaths:
     if n >= 10000:
         break
 
-
 #preprocess text in string form
 for i in range(len(texts)):
     texts[i] = texts[i].lower() #makes lowercase
@@ -48,7 +46,6 @@ for i in range(len(texts)):
 
 extra_stopwords = ['et', 'al', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
-
 #tokenize text and remove stopwords
 tokenized_texts = [[]] * len(texts)
 stop_words = set(stopwords.words('english') + extra_stopwords)
@@ -56,11 +53,9 @@ for i in range(len(texts)):
     tokens = word_tokenize(texts[i])
     tokenized_texts[i] = [j for j in tokens if not j in stop_words]
 
-
 #remake strings (without stopwords) from tokens
 for i in range(len(texts)):
     texts[i] = ('').join(tokenized_texts[i])
-
 
 #dump to files
 with open('10k_tokenized_texts.json', 'w') as file:
