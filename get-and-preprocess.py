@@ -51,8 +51,7 @@ extra_stopwords = ['et', 'al', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 
 #tokenize text and remove stopwords
 tokenized_texts = [[]] * len(texts)
-stop_words = set(stopwords.words('english'))
-stop_words.add(extra_stopwords)
+stop_words = set(stopwords.words('english') + extra_stopwords)
 for i in range(len(texts)):
     tokens = word_tokenize(texts[i])
     tokenized_texts[i] = [j for j in tokens if not j in stop_words]
