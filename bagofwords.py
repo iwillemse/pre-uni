@@ -24,7 +24,7 @@ bow_vecs = []
 for i in range(len(tokenized_texts)):
     bow_vec = [0] * len(most_freq)
     for j in range(len(most_freq)):
-        occurence = tokenized_texts[i].count(most_freq[j])/len(tokenized_texts[i])
+        occurence = tokenized_texts[i].count(most_freq[j])/(len(tokenized_texts[i])+1)
         bow_vec[j] = occurence
     bow_vecs.append(bow_vec)
 
