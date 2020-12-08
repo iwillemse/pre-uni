@@ -36,7 +36,7 @@ tfidf_vecs = []
 for i in range(len(tokenized_texts)):
     tfidf_vec = [0] * len(most_freq)
     for j in range(len(most_freq)):
-        tf = tokenized_texts[i].count(most_freq[j])/len(tokenized_texts[i]) #weighs document length
+        tf = tokenized_texts[i].count(most_freq[j])/(len(tokenized_texts[i])+1) #weighs document length
         tfidf_vec[j] = tf * idf[j]
     tfidf_vecs.append(tfidf_vec)
 
